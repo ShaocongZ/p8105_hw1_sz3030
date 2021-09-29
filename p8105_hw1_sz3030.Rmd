@@ -26,3 +26,23 @@ mean(pull(prob1_tab, char_vec))
 # mean of the factor vector
 mean(pull(prob1_tab, fac_vec))
 ```
+
+Based the mean values of each variable, we can get that the character vector and the factor vector don't work while the random sample and logical vector work.
+
+```{r eval= FALSE}
+# use as.numeric function to the logical variable
+as.numeric(pull(prob1_tab, log_vec))
+# use as.numeric function to the character variable
+as.numeric(pull(prob1_tab, char_vec))
+# use as.numeric function to the factor variable
+as.numeric(pull(prob1_tab, fac_vec))
+```
+
+The logical and factor variables are successfully converted to the numeric variables while the character variable still cannot be converted.
+
+The logical variable is thought to be 0 or 1 as default to represent FALSE or TRUE, respectively. So it is not surprising that logical variable has mean value.
+
+The factor variable is also arranged specific values to represent different levels in the variable once we use `as.numeric` vector. But there doesn't have a default value in the factor variable so that we cannot get its mean directly.
+
+For the character variable, we cannot use `as.numeric` vector to assign numbers to its characters and therefore it helps explain why we cannot get the mean in the previous chunck.
+
