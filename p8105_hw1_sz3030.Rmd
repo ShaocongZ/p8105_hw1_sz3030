@@ -40,9 +40,9 @@ as.numeric(pull(prob1_tab, fac_vec))
 
 The logical and factor variables are successfully converted to the numeric variables while the character variable still cannot be converted.
 
-The logical variable is thought to be 0 or 1 as default to represent FALSE or TRUE, respectively. So it is not surprising that logical variable has mean value.
+The logical variable is thought to be 0 or 1 as default to represent FALSE or TRUE, respectively. So it is not surprising that logical variable has mean value. `mean()` function does work for logical variables.
 
-The factor variable is also arranged specific values to represent different levels in the variable once we use `as.numeric` vector. But there doesn't have a default value in the factor variable so that we cannot get its mean directly.
+The factor variable is also arranged specific values to represent different levels in the variable once we use `as.numeric` vector because of the factor variable is ordinal. But there doesn't have a default value in the factor variable so that we cannot get its mean directly.
 
 For the character variable, we cannot use `as.numeric` vector to assign numbers to its characters and therefore it helps explain why we cannot get the mean in the previous chunck.
 
@@ -52,17 +52,17 @@ For the character variable, we cannot use `as.numeric` vector to assign numbers 
 data("penguins", package = "palmerpenguins")
 ```
 
-The dataset contains several variables of the penguins, they are `r names(penguins)`. There are three species `r levels(pull(penguins, species))` in this dataset and the number of data we collected from the three species are `r summary(pull(penguins, species))`, respectively. What's more, this is a `r nrow(penguins)` X `r ncol(penguins)` dataset and the mean flipper length we get from the dataset is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)`.
+The dataset contains several variables of the penguins from `r min(pull(penguins, year))` to `r max(pull(penguins, year))`, they are `r names(penguins)`. The average body mass of the penguins is `r round(mean(pull(penguins, body_mass_g), na.rm = TRUE), 2)`. There are three species `r levels(pull(penguins, species))` in this dataset and the number of data we collected from the three species are `r summary(pull(penguins, species))`, respectively. What's more, this is a `r nrow(penguins)` X `r ncol(penguins)` dataset and the mean flipper length we get from the dataset is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)`.
 
 ```{r warning = FALSE}
-# We first pull the X-Y variables from the dataset and make a data frame
+# We first pull the X-Y and species variables from the dataset and make a data frame
 plot_prob2 = tibble(
   y = penguins$flipper_length_mm,
   x = penguins$bill_length_mm,
   species = penguins$species
 )
 
-ggplot(plot_prob2, aes(x = x, y = y, colors = species)) + geom_point()
+ggplot(plot_prob2, aes(x = x, y = y, color = species)) + geom_point()
 ```
 
 
