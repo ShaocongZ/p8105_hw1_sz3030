@@ -54,6 +54,19 @@ data("penguins", package = "palmerpenguins")
 
 The dataset contains several variables of the penguins, they are `r names(penguins)`. There are three species `r levels(pull(penguins, species))` in this dataset and the number of data we collected from the three species are `r summary(pull(penguins, species))`, respectively. What's more, this is a `r nrow(penguins)` X `r ncol(penguins)` dataset and the mean flipper length we get from the dataset is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)`.
 
-```{r}
-summary(penguins)
+```{r warning = FALSE}
+# We first pull the X-Y variables from the dataset and make a data frame
+plot_prob2 = tibble(
+  y = penguins$flipper_length_mm,
+  x = penguins$bill_length_mm,
+  species = penguins$species
+)
+
+ggplot(plot_prob2, aes(x = x, y = y, colors = species)) + geom_point()
 ```
+
+
+```{r warning = FALSE}
+ggsave("hw1_scatter_plot.pdf")
+```
+
