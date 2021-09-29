@@ -1,0 +1,28 @@
+---
+title: "p8105_hw1_sz3030"
+author: "Shaocong Zhang"
+date: "9/27/2021"
+output: github_document
+---
+
+# Problem 1
+
+```{r problem_1}
+library(tidyverse)
+
+prob1_tab = tibble(
+  norm_samp = rnorm(10),
+  log_vec = norm_samp > 0,
+  char_vec = c("a", "b", "c", "d", "e", "f", "g", 'h', "i", "j"),
+  fac_vec = factor(c("easy", "median", "hard", "easy", "median", "hard", "easy", "median", "hard", "easy"))
+)
+
+# mean of the random sample
+mean(pull(prob1_tab, norm_samp))
+# mean of the logical vector
+mean(pull(prob1_tab, log_vec))
+# mean of the character vector
+mean(pull(prob1_tab, char_vec))
+# mean of the factor vector
+mean(pull(prob1_tab, fac_vec))
+```
