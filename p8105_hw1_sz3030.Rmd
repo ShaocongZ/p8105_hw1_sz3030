@@ -46,3 +46,14 @@ The factor variable is also arranged specific values to represent different leve
 
 For the character variable, we cannot use `as.numeric` vector to assign numbers to its characters and therefore it helps explain why we cannot get the mean in the previous chunck.
 
+# Problem 2
+
+```{r }
+data("penguins", package = "palmerpenguins")
+```
+
+The dataset contains several variables of the penguins, they are `r names(penguins)`. There are three species `r levels(pull(penguins, species))` in this dataset and the number of data we collected from the three species are `r summary(pull(penguins, species))`, respectively. What's more, this is a `r nrow(penguins)` X `r ncol(penguins)` dataset and the mean flipper length we get from the dataset is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)`.
+
+```{r}
+summary(penguins)
+```
